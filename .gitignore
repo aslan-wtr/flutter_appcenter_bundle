@@ -2,6 +2,16 @@
 # Created by https://www.gitignore.io/api/osx,code,xcode,flutter,android,intellij+all,androidstudio
 # Edit at https://www.gitignore.io/?templates=osx,code,xcode,flutter,android,intellij+all,androidstudio
 
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+
+build/
+
+pubspec.lock
+
 ### Android ###
 # Built application files
 *.apk
