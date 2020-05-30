@@ -1,4 +1,4 @@
-package com.github.hanabi1224.flutter_appcenter_bundle
+package com.flutter_appcenter_bundle
 
 import android.app.Application
 import android.util.Log
@@ -34,7 +34,7 @@ class FlutterAppcenterBundlePlugin : FlutterPlugin, MethodCallHandler, ActivityA
     // depending on the user's project. onAttachedToEngine or registerWith must both be defined
     // in the same class.
     companion object {
-        const val methodChannelName = "com.github.hanabi1224.flutter_appcenter_bundle"
+        const val methodChannelName = "com.flutter_appcenter_bundle"
 
         var application: Application? = null
 

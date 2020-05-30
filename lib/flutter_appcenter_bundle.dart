@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-final _methodChannelName = "com.github.hanabi1224.flutter_appcenter_bundle";
+final _methodChannelName = "com.flutter_appcenter_bundle";
 final _methodChannel = MethodChannel(_methodChannelName);
 
 class AppCenter {
