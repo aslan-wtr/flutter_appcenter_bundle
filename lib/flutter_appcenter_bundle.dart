@@ -14,9 +14,6 @@ class AppCenter {
     @required String appSecretIOS,
     enableAnalytics = true,
     enableCrashes = true,
-    enableDistribute = false,
-    usePrivateDistributeTrack = false,
-    disableAutomaticCheckForUpdate = false,
   }) async {
     String appsecret;
     if (Platform.isAndroid) {
@@ -33,17 +30,11 @@ class AppCenter {
 
     WidgetsFlutterBinding.ensureInitialized();
 
-    if (disableAutomaticCheckForUpdate) {
-      await _disableAutomaticCheckForUpdateAsync();
-    }
-
     await configureAnalyticsAsync(enabled: enableAnalytics);
     await configureCrashesAsync(enabled: enableCrashes);
-    await configureDistributeAsync(enabled: enableDistribute);
 
     await _methodChannel.invokeMethod('start', <String, dynamic>{
       'secret': appsecret.trim(),
-      'usePrivateTrack': usePrivateDistributeTrack,
     });
   }
 
@@ -60,7 +51,9 @@ class AppCenter {
   }
 
   static Future<String> getInstallIdAsync() async {
-    return await _methodChannel.invokeMethod('getInstallId').then((r) => r as String);
+    return await _methodChannel
+        .invokeMethod('getInstallId')
+        .then((r) => r as String);
   }
 
   static Future configureAnalyticsAsync({@required enabled}) async {
@@ -73,25 +66,5 @@ class AppCenter {
 
   static Future configureCrashesAsync({@required enabled}) async {
     await _methodChannel.invokeMethod('configureCrashes', enabled);
-  }
-
-  static Future<bool> isDistributeEnabledAsync() async {
-    return await _methodChannel.invokeMethod('isDistributeEnabled');
-  }
-
-  static Future configureDistributeAsync({@required enabled}) async {
-    await _methodChannel.invokeMethod('configureDistribute', enabled);
-  }
-
-  static Future configureDistributeDebugAsync({@required enabled}) async {
-    await _methodChannel.invokeMethod('configureDistributeDebug', enabled);
-  }
-
-  static Future _disableAutomaticCheckForUpdateAsync() async {
-    await _methodChannel.invokeMethod('disableAutomaticCheckForUpdate');
-  }
-
-  static Future checkForUpdateAsync() async {
-    await _methodChannel.invokeMethod('checkForUpdate');
   }
 }
